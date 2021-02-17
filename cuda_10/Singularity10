@@ -3,8 +3,11 @@ From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 IncludeCmd: yes
 
 %setup
+%files
+./cuda_10/requirements.txt /opt/requirements.txt 
 
 %post
+	umount /tmp
   	apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
          ca-certificates \
@@ -17,16 +20,13 @@ IncludeCmd: yes
          python3-setuptools \
          sqlite3 \
          libsqlite3-dev\
-		 gcc gfortran libopenblas-dev liblapack-dev cython\
-		 git
-    
-	git clone https://github.com/choosehappy/QuickAnnotator.git
-		
-	cd QuickAnnotator/cuda_10
+	 gcc gfortran libopenblas-dev liblapack-dev cython
+	
+	cd opt
 	pip3 install -U pip
 	pip3 install -r requirements.txt
 %environment
 	DEBIAN_FRONTEND=noninteractive
 
 %runscript
-   python3 QA.py
+	python3 QA.py
