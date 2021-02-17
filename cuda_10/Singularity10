@@ -4,7 +4,7 @@ IncludeCmd: yes
 
 %setup
 %files
-./cuda_10/requirements.txt /opt/requirements.txt 
+./cuda_10/requirements.txt /cuda_10/requirements.txt 
 
 %post
 	umount /tmp
@@ -20,9 +20,10 @@ IncludeCmd: yes
          python3-setuptools \
          sqlite3 \
          libsqlite3-dev\
-	 gcc gfortran libopenblas-dev liblapack-dev cython
-	
-	cd opt
+		 gcc gfortran libopenblas-dev liblapack-dev cython\
+		 git
+    
+	cd cuda_10
 	pip3 install -U pip
 	pip3 install -r requirements.txt
 %environment
