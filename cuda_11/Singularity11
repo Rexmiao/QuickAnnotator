@@ -4,7 +4,7 @@ IncludeCmd: yes
 
 %setup
 %files
-. /opt/quick_annotator
+. /opt/QuickAnnotator
 %post
     umount /tmp
   	apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" --no-install-recommends \
@@ -23,11 +23,11 @@ IncludeCmd: yes
          sqlite3 \
          libsqlite3-dev
 
-	cd /opt/quick_annotator/cuda_11
+	cd /opt/QuickAnnotator/cuda_11
 	pip3 install -r requirements.txt
 %environment
 	DEBIAN_FRONTEND=noninteractive
 
 %runscript
-	cd /opt/quick_annotator
+	cd /opt/QuickAnnotator
 	python3 QA.py
