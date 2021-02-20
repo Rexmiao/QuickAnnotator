@@ -4,7 +4,7 @@ IncludeCmd: yes
 
 %setup
 %files
-. /opt/quick_annotator
+. /opt/QuickAnnotator
 
 %post
 	umount /tmp
@@ -23,12 +23,12 @@ IncludeCmd: yes
 		 gcc gfortran libopenblas-dev liblapack-dev cython\
 		 git
     
-	cd /opt/quick_annotator/cuda_10
+	cd /opt/QuickAnnotator/cuda_10
 	pip3 install -U pip
 	pip3 install -r requirements.txt
 %environment
 	DEBIAN_FRONTEND=noninteractive
 
 %runscript
-	cd /opt/quick_annotator
+	cd /opt/QuickAnnotator
 	python3 QA.py
